@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Screenshots
 
-### _Step 1_
+### _Step 1: Implementing Frontend _
 ---
 - Displayed as below at localhost:3000 
 
@@ -18,6 +18,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - The movies without poster image is displayed as below
 
 ![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/placeholder.png)
+
+---
+
+
+### _Step 2: Set up Authentication and Reviews_
+---
+- Google Cloud Platform API was used to authenticate users.
+
+ ![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/NewReview.png)
+ *Screenshot of a movie review page with a newly written review*
+
+![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/EditedReview.png)
+*Screenshot of the same page with the review edited*
 
 ---
 
