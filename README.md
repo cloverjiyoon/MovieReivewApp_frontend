@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Screenshots
 
-### _Step 1: Implementing Frontend _
+### _Step 1: Implementing Frontend_
 ---
 - Displayed as below at localhost:3000 
 
