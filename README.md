@@ -35,6 +35,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ---
 
 
+### _Step 3: Set up Favorite features for logged in users_
+---
+- Any logged in user can save their favorite move by clicking the movie posters. Star on each poster will change from white to yellow color when they want to mark as their favorite movie.
+
+ ![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/FavoriteStars.png)
+ *Screenshot of a movie landing page for logged in user*
+
+![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/FavoriteMongoDB.png)
+*Screenshot of the favorite list database table from MongoDB Compass*
+
+---
+
+
 
 ## Available Scripts
 
