@@ -22,15 +22,15 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
-  const [doFaves, setDoFaves] = useState(false);
+  const [doFaves, setDoFaves] = useState(false);   // check favorite has any updates
 
   const addFavorite = (movieId) => {
-    setDoFaves(true);
+    setDoFaves(true);   // everytime when there's any change on onClick, doFaves became True
     setFavorites([...favorites, movieId])
   }
 
   const deleteFavorite = (movieId) => {
-    setDoFaves(true);
+    setDoFaves(true);    // everytime when there's any change on onClick, doFaves became True
     setFavorites(favorites.filter(f => f !== movieId));
   }
 
@@ -91,11 +91,11 @@ function App() {
     setFavorites([])
     loadFavorites();
     
-  }, [user, loadFavorites]);
+  }, [loadFavorites]);
 
   useEffect(() => {
     saveFavorites();
-    setDoFaves(false);
+    setDoFaves(false);    // after we handle changes, set doFaves False
   }, [saveFavorites]);
 
 
