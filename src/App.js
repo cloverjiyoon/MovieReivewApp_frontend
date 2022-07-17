@@ -14,7 +14,8 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 
 import FavoriteDataService from "./services/favorites";
-
+import FavoritePage from "./components/FavoritesPage";
+import MovieDataService from './services/movies';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -23,8 +24,11 @@ function App() {
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [doFaves, setDoFaves] = useState(false);   // check favorite has any updates
+  const [favMovies, setFavMovies] = useState([]);
+  // id, poster, title.
 
-  const addFavorite = (movieId) => {
+  const addFavorite = (movieId) => {    // *********ADD title and poster information here
+
     setDoFaves(true);   // everytime when there's any change on onClick, doFaves became True
     setFavorites([...favorites, movieId])
   }
@@ -50,53 +54,97 @@ function App() {
   }, []);
 
 
-  const loadFavorites = useCallback( () => {
-    if(user){
-      
+  const loadFavorites = useCallback(() => {
+    if (user) {
+
       FavoriteDataService.getFavorites(user.googleId)
-      .then(response => {
-        console.log(response)
-        setFavorites(response.data.favorites)
-      })
-      .catch(e => {
-        console.log(e);
-      });
+        .then(response => {
+          console.log(response)
+          setFavorites(response.data.favorites)
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }, [user]);
 
-  const saveFavorites = useCallback( () => {
 
-    if(user && doFaves){
-      
+
+  const saveFavorites = useCallback(() => {
+
+    if (user && doFaves) {
+
       var data = {
         _id: user.googleId,
         favorites: favorites
+
       }
 
       FavoriteDataService.updateFavorites(data)
 
-      // .then(response => {
-      //   console.log(response)
-      //   setFavorites(response.data)
-      // })
-      .catch(e => {
-        console.log(e);
-      });
+        // .then(response => {
+        //   console.log(response)
+        //   setFavorites(response.data)
+        // })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }, [user, favorites]);
+
+
+
+// HW 8 
+
+  const loadFavMovies = useCallback(() => {
+    setFavMovies([])
+
+    const getFavMovieList = id => {
+      MovieDataService.get(id)
+        .then(response => {
+          setFavMovies([...favMovies, response.data]);
+          console.log(response.data);
+          console.log(favMovies);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    };
+
+    
+    if (user && favorites) {
+
+      favorites.map((movie_Id) => {
+        // get each movie info by ID
+        getFavMovieList(movie_Id)
+
+      })
+
+
+    }
+  }, [user, favorites]);
+
 
 
 
   useEffect(() => {
     setFavorites([])
     loadFavorites();
-    
+
   }, [loadFavorites]);
 
   useEffect(() => {
     saveFavorites();
     setDoFaves(false);    // after we handle changes, set doFaves False
   }, [saveFavorites]);
+
+
+  // HW8
+  useEffect(() => {
+    loadFavMovies();
+    console.log(favMovies);
+  }, [loadFavMovies]);
+
 
 
   return (
@@ -115,6 +163,9 @@ function App() {
                 <Nav.Link as={Link} to={"/movies"}>
                   Movies
                 </Nav.Link>
+                {user && <Nav.Link as={Link} to={"/favorites"}>
+                  Favorites
+                </Nav.Link>}
               </Nav>
             </Navbar.Collapse>
             {user ? (
@@ -147,6 +198,15 @@ function App() {
           />
           <Route path={"/movies/:id/review"} element={
             <AddReview user={user} />}
+          />
+
+          <Route path={"/favorites"} element={
+            <FavoritePage
+              user={user}
+              favorites={favorites}
+              favMovies = {favMovies}
+
+            />}
           />
 
         </Routes>
