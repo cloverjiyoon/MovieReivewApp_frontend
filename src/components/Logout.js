@@ -33,6 +33,7 @@ export default function Logout({setUser}) {
     const handleLogout = () => {
         googleLogout()
         setUser(null);
+        
         localStorage.setItem("login", null);  // clearing local storage
         console.log("Logged out successfully.");
     }
