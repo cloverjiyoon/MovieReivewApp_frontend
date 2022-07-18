@@ -2,6 +2,7 @@ import update from 'immutability-helper'
 import { useCallback, useState, useEffect } from 'react'
 import { CardDemo } from './CardDemo'
 import FavoriteDataService from '../services/favorites.js'
+import { BsCardList } from 'react-icons/bs'
 
 const style = {
     width: 400,
@@ -19,20 +20,12 @@ export const FavoriteContainer = ({
         console.log(favorites)
 
         favMovies.sort((a, b) => favorites.indexOf(a._id) - favorites.indexOf(b._id));
-
         const [cards, setCards] = useState(favMovies);
 
         // loadFavMovies to re-render
         // useEffect(() => {
         //     setCards(favMovies);
         // }, [favorites, user, loadFavMovies])
-
-        // when cards changed, update favorites order
-        // useEffect(() =>{
-        //     setCards(favorites);
-        // },[cards])
-
-
 
         console.log("favMovies in FavContainer");
         console.log(favMovies)
@@ -68,10 +61,8 @@ export const FavoriteContainer = ({
         }, [])
 
         const renderCard = useCallback((card, index) => {
-            console.log(card);
             console.log(card._id);
             return (
-
 
                 <CardDemo
                     key={card._id}
@@ -81,13 +72,32 @@ export const FavoriteContainer = ({
                     title={card.title}
                     moveCard={moveCard}
                 />
+
             )
         }, [])
 
 
+        // when cards changed, update favorites order
+        useEffect(() => {
+            let sortStandard = cards.map(a => a._id);
+            
+            // extrating ._id field to sort
+            favorites.sort((a, b) => sortStandard.indexOf(a) - sortStandard.indexOf(b));
+
+            var data = {
+                _id: user.googleId,
+                favorites: favorites
+        
+              }
+            FavoriteDataService.updateFavorites(data);
+        }, [cards])
+
+
         return (
             <>
-                <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+                <div style={style}>
+                    {cards.map((card, i) => renderCard(card, i))}
+                </div>
 
             </>
         )
