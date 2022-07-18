@@ -1,6 +1,5 @@
 import update from 'immutability-helper'
 import { useCallback, useState, useEffect } from 'react'
-import { FavoriteCard } from './FavoriteCard.js'
 import { CardDemo } from './CardDemo'
 import FavoriteDataService from '../services/favorites.js'
 
@@ -10,32 +9,37 @@ const style = {
 export const FavoriteContainer = ({
     user,
     favorites,
-    favMovies
+    favMovies,
+    loadFavMovies
 }) => {
     {
 
-        // const [cards, setCards] = useState([
-        //     {
-        //         id: 1,
-        //         text: 'Write a cool JS library',
-        //       },
-        //       {
-        //         id: 2,
-        //         text: 'Make it generic enough',
-        //       },
-        //       
 
-        // ])
-
+        console.log("Favorite list in FavContainer")
         console.log(favorites)
-        // const [cards, setCards] = useState(favorites);
-        // useEffect(() =>{
-        //     setCards(favorites);
-        // },[favorites])
+
+        favMovies.sort((a, b) => favorites.indexOf(a._id) - favorites.indexOf(b._id));
 
         const [cards, setCards] = useState(favMovies);
 
+        // loadFavMovies to re-render
+        // useEffect(() => {
+        //     setCards(favMovies);
+        // }, [favorites, user, loadFavMovies])
+
+        // when cards changed, update favorites order
+        // useEffect(() =>{
+        //     setCards(favorites);
+        // },[cards])
+
+
+
+        console.log("favMovies in FavContainer");
         console.log(favMovies)
+
+
+        console.log("cards in FavContainer");
+        console.log(cards)
 
         // // const loadFavoritesCard = useCallback(() => {
         // //     if (user) {
@@ -62,43 +66,29 @@ export const FavoriteContainer = ({
                 }),
             )
         }, [])
-        
+
         const renderCard = useCallback((card, index) => {
             console.log(card);
+            console.log(card._id);
             return (
 
 
                 <CardDemo
-                key={card.id}
-                index={index}
-                //id={card.id}
-                //text={card.text}
-                text={card.title}
-                moveCard={moveCard}
-              />
-                // <FavoriteCard
-                //     key={card.id}
-                //     index={index}
-                //     id={card.id}
-                //     poster={card.poster}
-                //     title={card.title}
-                //     moveCard={moveCard}
-                // />
+                    key={card._id}
+                    index={index}
+                    id={card._id}
+                    poster={card.poster ? card.poster : "/images/NoPosterAvailable.jpeg"}
+                    title={card.title}
+                    moveCard={moveCard}
+                />
             )
         }, [])
-
-
-        // useEffect(() => {
-        //     setCards([])
-        //     loadFavoritesCard();
-
-        // }, [loadFavoritesCard]);
 
 
         return (
             <>
                 <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
-                
+
             </>
         )
     }

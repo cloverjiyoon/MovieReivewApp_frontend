@@ -16,7 +16,8 @@ import FavoriteContainer from './FavoriteContainer';
 const FavoritePage = ({
     user,
     favorites,
-    favMovies
+    favMovies,
+    loadFavMovies
 }) => {
 
 
@@ -36,6 +37,7 @@ const FavoritePage = ({
                             user={user}
                             favorites={favorites}
                             favMovies = {favMovies}
+                            loadFavMovies = {loadFavMovies}
                         />
                     </DndProvider>
                 </div>

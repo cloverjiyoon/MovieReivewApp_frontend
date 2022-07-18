@@ -24,8 +24,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [doFaves, setDoFaves] = useState(false);   // check favorite has any updates
-  const [favMovies, setFavMovies] = useState([]);
-  // id, poster, title.
+  const [favMovies, setFavMovies] = useState([]);  // id, poster, title.
+  const [carddata, setCarddata] = useState(null);
 
   const addFavorite = (movieId) => {    // *********ADD title and poster information here
 
@@ -94,27 +94,41 @@ function App() {
 
 
 
-// HW 8 
+  // HW 8 
 
   const loadFavMovies = useCallback(() => {
     setFavMovies([])
+    console.log("favorites in loadFavMovies");
+    console.log(favorites);
 
     const getFavMovieList = id => {
       MovieDataService.get(id)
         .then(response => {
-          setFavMovies([...favMovies, response.data]);
+          var carddata = {
+            _id: id,
+            poster: response.data.poster,
+            title: response.data.title
+
+          }
+
+          setCarddata(carddata);
+
+          // setFavMovies([...favMovies, carddata]);
+
+          // setFavMovies([...favMovies, response.data]);
+
           console.log(response.data);
-          console.log(favMovies);
+          // console.log(favMovies);
         })
         .catch(e => {
           console.log(e);
         });
     };
 
-    
+
     if (user && favorites) {
 
-      favorites.map((movie_Id) => {
+      favorites.map(async (movie_Id) => {
         // get each movie info by ID
         getFavMovieList(movie_Id)
 
@@ -143,8 +157,18 @@ function App() {
   useEffect(() => {
     loadFavMovies();
     console.log(favMovies);
+    // setFavMovies(favMovies.sort((a, b) => a._id.localeCompare(b._id)));
   }, [loadFavMovies]);
 
+  useEffect(() => {
+    console.log("Favorite Movie list is now");
+    if (carddata) {
+      setFavMovies([...favMovies, carddata]);
+    }
+    console.log(favMovies);
+  }, [carddata]);
+
+  // favMovies.sort((a, b) => favorites.indexOf(a) - favorites.indexOf(b));
 
 
   return (
@@ -204,7 +228,8 @@ function App() {
             <FavoritePage
               user={user}
               favorites={favorites}
-              favMovies = {favMovies}
+              favMovies={favMovies}
+              loadFavMovies = {loadFavMovies}
 
             />}
           />
