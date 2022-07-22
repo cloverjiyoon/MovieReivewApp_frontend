@@ -27,6 +27,8 @@ function App() {
   const [favMovies, setFavMovies] = useState([]);  // id, poster, title.
   const [carddata, setCarddata] = useState(null);
 
+  // const [cards, setCards] = useState();
+
   const addFavorite = (movieId) => {    // *********ADD title and poster information here
 
     setDoFaves(true);   // everytime when there's any change on onClick, doFaves became True
@@ -112,6 +114,7 @@ function App() {
           }
 
           setCarddata(carddata);
+          console.log(carddata);
 
           // setFavMovies([...favMovies, carddata]);
 
@@ -217,20 +220,18 @@ function App() {
               favorites={favorites}
             />}
           />
-          <Route path={"/movies/:id"} element={
+          <Route exact path={"/movies/:id"} element={
             <Movie user={user} />}
           />
-          <Route path={"/movies/:id/review"} element={
+          <Route exact path={"/movies/:id/review"} element={
             <AddReview user={user} />}
           />
 
-          <Route path={"/favorites"} element={
+          <Route exact path={"/favorites"} element={
             <FavoritePage
               user={user}
               favorites={favorites}
               favMovies={favMovies}
-              loadFavMovies = {loadFavMovies}
-
             />}
           />
 

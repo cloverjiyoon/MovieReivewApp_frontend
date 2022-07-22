@@ -2,7 +2,6 @@ import update from 'immutability-helper'
 import { useCallback, useState, useEffect } from 'react'
 import { CardDemo } from './CardDemo'
 import FavoriteDataService from '../services/favorites.js'
-import { BsCardList } from 'react-icons/bs'
 
 const style = {
     width: 400,
@@ -10,25 +9,33 @@ const style = {
 export const FavoriteContainer = ({
     user,
     favorites,
-    favMovies,
-    loadFavMovies
+    favMovies
+    // cards,
+    // setCards
+    // loadFavMovies
 }) => {
     {
 
 
-        console.log("Favorite list in FavContainer")
+        console.log("favoties (movie id list) in FavContainer")
         console.log(favorites)
 
         favMovies.sort((a, b) => favorites.indexOf(a._id) - favorites.indexOf(b._id));
-        const [cards, setCards] = useState(favMovies);
-
-        // loadFavMovies to re-render
-        // useEffect(() => {
-        //     setCards(favMovies);
-        // }, [favorites, user, loadFavMovies])
+        console.log("favMovies sorted");
 
         console.log("favMovies in FavContainer");
         console.log(favMovies)
+
+
+        const [cards, setCards] = useState(favMovies);
+        // console.log(cards);
+
+        // loadFavMovies to re-render
+        useEffect(() => {
+            setCards(favMovies);
+            // console.log(cards)
+        }, [favMovies, cards]) //favMovies
+ 
 
 
         console.log("cards in FavContainer");
@@ -79,17 +86,19 @@ export const FavoriteContainer = ({
 
         // when cards changed, update favorites order
         useEffect(() => {
-            let sortStandard = cards.map(a => a._id);
-            
-            // extrating ._id field to sort
-            favorites.sort((a, b) => sortStandard.indexOf(a) - sortStandard.indexOf(b));
+            if (user && cards) {
+                let sortStandard = cards.map(a => a._id);
 
-            var data = {
-                _id: user.googleId,
-                favorites: favorites
-        
-              }
-            FavoriteDataService.updateFavorites(data);
+                // extrating ._id field to sort
+                favorites.sort((a, b) => sortStandard.indexOf(a) - sortStandard.indexOf(b));
+
+                var data = {
+                    _id: user.googleId,
+                    favorites: favorites
+
+                }
+                FavoriteDataService.updateFavorites(data);
+            }
         }, [cards])
 
 

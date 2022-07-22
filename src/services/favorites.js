@@ -11,9 +11,9 @@ class FavoriteDataService {
     }
 
     // check movies.route.js in backend
-    GetFavoritesCards(userId){
-        return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/movies/favoritesCard/${userId}`);
-    }
+    // GetFavoritesCards(userId){
+    //     return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/movies/favoritesCard/${userId}`);
+    // }
 
 }
 
