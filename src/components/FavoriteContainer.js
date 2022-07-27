@@ -9,10 +9,8 @@ const style = {
 export const FavoriteContainer = ({
     user,
     favorites,
-    favMovies
-    // cards,
-    // setCards
-    // loadFavMovies
+    favMovies,
+    setFavoritesInApp
 }) => {
     {
 
@@ -28,32 +26,9 @@ export const FavoriteContainer = ({
 
 
         const [cards, setCards] = useState(favMovies);
-        // console.log(cards);
-
-        // loadFavMovies to re-render
-        useEffect(() => {
-            setCards(favMovies);
-            // console.log(cards)
-        }, [favMovies, cards]) //favMovies
- 
-
 
         console.log("cards in FavContainer");
         console.log(cards)
-
-        // // const loadFavoritesCard = useCallback(() => {
-        // //     if (user) {
-
-        // //         FavoriteDataService.GetFavoritesCards(user.googleId)
-        // //             .then(response => {
-        // //                 console.log(response)
-        // //                 setCards(response.data)
-        // //             })
-        // //             .catch(e => {
-        // //                 console.log(e);
-        // //             });
-        // //     }
-        // // }, [user, favorites]);
 
 
         const moveCard = useCallback((dragIndex, hoverIndex) => {
@@ -82,11 +57,12 @@ export const FavoriteContainer = ({
 
             )
         }, [])
-
-
+        
         // when cards changed, update favorites order
         useEffect(() => {
             if (user && cards) {
+                console.log("user in useEffect")
+                console.log(user);
                 let sortStandard = cards.map(a => a._id);
 
                 // extrating ._id field to sort
@@ -95,11 +71,23 @@ export const FavoriteContainer = ({
                 var data = {
                     _id: user.googleId,
                     favorites: favorites
-
+        
                 }
-                FavoriteDataService.updateFavorites(data);
+                // FavoriteDataService.updateFavorites(data);
+                setFavoritesInApp(favorites, data);
+
+                console.log(favorites);
+                
             }
-        }, [cards])
+        }, [cards, favorites])
+
+
+        useEffect(() => {
+            setCards(previousState => favMovies);
+            console.log(cards);
+
+        }, [])
+
 
 
         return (

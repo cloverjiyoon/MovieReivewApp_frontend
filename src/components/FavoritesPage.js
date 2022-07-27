@@ -12,7 +12,8 @@ import { useNavigate } from 'react-router-dom';
 const FavoritePage = ({
     user,
     favorites,
-    favMovies
+    favMovies,
+    setFavoritesInApp
     // cards,
     // setCards
 }) => {
@@ -35,6 +36,7 @@ const FavoritePage = ({
                                 user={user}
                                 favorites={favorites}
                                 favMovies={favMovies}
+                                setFavoritesInApp = {setFavoritesInApp}
                             // cards = {cards}
                             // setCards = {setCards}
                             />

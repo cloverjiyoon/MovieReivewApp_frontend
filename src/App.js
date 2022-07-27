@@ -98,6 +98,16 @@ function App() {
 
   // HW 8 
 
+
+  const setFavoritesInApp = useCallback((favorites, data) => {
+    console.log("update favorites in App.js");
+    console.log(favorites);
+    setFavorites(favorites);
+    console.log("update fav movie in MongoDB")
+    FavoriteDataService.updateFavorites(data)
+    // FavoriteDataService.updateFavorites(data);
+  }, [favorites, user]);
+
   const loadFavMovies = useCallback(() => {
     setFavMovies([])
     console.log("favorites in loadFavMovies");
@@ -171,9 +181,6 @@ function App() {
     console.log(favMovies);
   }, [carddata]);
 
-  // favMovies.sort((a, b) => favorites.indexOf(a) - favorites.indexOf(b));
-
-
   return (
 
     <GoogleOAuthProvider clientId={clientId}>
@@ -232,6 +239,7 @@ function App() {
               user={user}
               favorites={favorites}
               favMovies={favMovies}
+              setFavoritesInApp = {setFavoritesInApp}
             />}
           />
 
