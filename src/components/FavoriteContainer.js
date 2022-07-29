@@ -24,7 +24,7 @@ export const FavoriteContainer = ({
         console.log("favMovies in FavContainer");
         console.log(favMovies)
 
-
+        debugger
         const [cards, setCards] = useState(favMovies);
 
         console.log("cards in FavContainer");
@@ -74,15 +74,18 @@ export const FavoriteContainer = ({
         
                 }
                 // FavoriteDataService.updateFavorites(data);
+                debugger
                 setFavoritesInApp(favorites, data);
-
+                debugger
                 console.log(favorites);
+                
                 
             }
         }, [cards, favorites])
 
 
         useEffect(() => {
+        
             setCards(favMovies);
             console.log(cards);
 

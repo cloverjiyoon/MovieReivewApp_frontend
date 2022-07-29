@@ -25,6 +25,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [doFaves, setDoFaves] = useState(false);   // check favorite has any updates
   const [favMovies, setFavMovies] = useState([]);  // id, poster, title.
+  debugger
   const [carddata, setCarddata] = useState(null);
 
   // const [cards, setCards] = useState();
@@ -57,6 +58,7 @@ function App() {
 
 
   const loadFavorites = useCallback(() => {
+    debugger
     if (user) {
 
       FavoriteDataService.getFavorites(user.googleId)
@@ -67,6 +69,7 @@ function App() {
         .catch(e => {
           console.log(e);
         });
+        debugger
     }
   }, [user]);
 
@@ -100,6 +103,7 @@ function App() {
 
 
   const loadFavMovies = useCallback(() => {
+    debugger
     setFavMovies([])
     console.log("favorites in loadFavMovies");
     console.log(favorites);
@@ -135,10 +139,10 @@ function App() {
       favorites.map(async (movie_Id) => {
         // get each movie info by ID
         getFavMovieList(movie_Id)
+        debugger
 
       })
-
-
+      debugger
     }
   }, [user, favorites]);
 
@@ -149,7 +153,6 @@ function App() {
     setFavorites(favorites);
     console.log("update fav movie in MongoDB")
     FavoriteDataService.updateFavorites(data)
-    // FavoriteDataService.updateFavorites(data);
   }, [favorites]);
 
 
