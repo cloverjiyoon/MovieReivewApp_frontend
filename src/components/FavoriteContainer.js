@@ -83,10 +83,10 @@ export const FavoriteContainer = ({
 
 
         useEffect(() => {
-            setCards(previousState => favMovies);
+            setCards(favMovies);
             console.log(cards);
 
-        }, [])
+        }, [cards])
 
 
 

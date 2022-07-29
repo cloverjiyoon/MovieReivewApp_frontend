@@ -99,15 +99,6 @@ function App() {
   // HW 8 
 
 
-  const setFavoritesInApp = useCallback((favorites, data) => {
-    console.log("update favorites in App.js");
-    console.log(favorites);
-    setFavorites(favorites);
-    console.log("update fav movie in MongoDB")
-    FavoriteDataService.updateFavorites(data)
-    // FavoriteDataService.updateFavorites(data);
-  }, [favorites, user]);
-
   const loadFavMovies = useCallback(() => {
     setFavMovies([])
     console.log("favorites in loadFavMovies");
@@ -152,6 +143,14 @@ function App() {
   }, [user, favorites]);
 
 
+  const setFavoritesInApp = useCallback((favorites, data) => {
+    console.log("update favorites in App.js");
+    console.log(favorites);
+    setFavorites(favorites);
+    console.log("update fav movie in MongoDB")
+    FavoriteDataService.updateFavorites(data)
+    // FavoriteDataService.updateFavorites(data);
+  }, [favorites]);
 
 
   useEffect(() => {
@@ -170,8 +169,8 @@ function App() {
   useEffect(() => {
     loadFavMovies();
     console.log(favMovies);
-    // setFavMovies(favMovies.sort((a, b) => a._id.localeCompare(b._id)));
-  }, [loadFavMovies]);
+    
+  }, [favorites]); //loadFavMovies, loadFavorites
 
   useEffect(() => {
     console.log("Favorite Movie list is now");
