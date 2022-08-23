@@ -1,5 +1,7 @@
 # Movie Review App
 
+Deployed Link : https://movietime-frontend-clover.herokuapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Screenshots
@@ -8,16 +10,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ---
 - Displayed as below at localhost:3000 
 
- ![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/localhost3000.png)
+ ![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/localhost3000.png)
 
 - Each movie's 'Reviews' page is displayed as below
 
-![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/TheGreatTrain.png)
+![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/TheGreatTrain.png)
 
 
 - The movies without poster image is displayed as below
 
-![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/placeholder.png)
+![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/placeholder.png)
 
 ---
 
@@ -26,10 +28,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ---
 - Google Cloud Platform API was used to authenticate users.
 
- ![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/NewReview.png)
+ ![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/NewReview.png)
  *Screenshot of a movie review page with a newly written review*
 
-![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/EditedReview.png)
+![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/EditedReview.png)
 *Screenshot of the same page with the review edited*
 
 ---
@@ -39,10 +41,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ---
 - Any logged in user can save their favorite move by clicking the movie posters. Star on each poster will change from white to yellow color when they want to mark as their favorite movie.
 
- ![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/FavoriteStars.png)
+ ![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/FavoriteStars.png)
  *Screenshot of a movie landing page for logged in user*
 
-![Image Link](https://github.ccs.neu.edu/NEU-CS5610-SU22/Jiyoon_Clover_Jeong-HWimg/blob/main/FavoriteMongoDB.png)
+![Image Link](https://github.com/CloverJiyoon/MovieApp_Image/blob/main/FavoriteMongoDB.png)
 *Screenshot of the favorite list database table from MongoDB Compass*
 
 ---
